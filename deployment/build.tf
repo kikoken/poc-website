@@ -9,7 +9,7 @@ resource "aws_codebuild_project" "build" {
   build_timeout = "5"
   service_role = "aws_iam_role.build.arn"
 
-  artifacts = {
+  artifacts {
     type = "CODEPIPELINE"
   }
 
