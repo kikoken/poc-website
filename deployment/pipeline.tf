@@ -1,9 +1,9 @@
 resource "aws_codepipeline" "pipeline" {
   name     = "poc-website-pipeline"
-  role_arn = "aws_iam_role.build.arn"
+  role_arn = aws_iam_role.build.arn
 
   artifact_store {
-    location = "aws_s3_bucket.artifacts.bucket"
+    location = aws_s3_bucket.artifacts.bucket
     type     = "S3"
   }
 
@@ -39,7 +39,7 @@ resource "aws_codepipeline" "pipeline" {
       version = "1"
 
       configuration = {
-        ProjectName = "aws_codebuild_project.build.name"
+        ProjectName = aws_codebuild_project.build.name
       }
     }
   }
@@ -56,8 +56,8 @@ resource "aws_codepipeline" "pipeline" {
       version = "1"
 
       configuration = {
-        ApplicationName = "aws_elastic_beanstalk_application.app.name"
-        EnvironmentName = "aws_elastic_beanstalk_environment.production.name"
+        ApplicationName = aws_elastic_beanstalk_application.app.name
+        EnvironmentName = aws_elastic_beanstalk_environment.production.name
       }
     }
   }

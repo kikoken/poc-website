@@ -40,7 +40,7 @@ EOF
 
 resource "aws_iam_role_policy" "beanstalk_policy" {
   name = "terraform-website-beanstalk-policy"
-  role = "aws_iam_role.build.id"
+  role = aws_iam_role.build.id
 
   policy = <<POLICY
 {
@@ -235,11 +235,11 @@ POLICY
 
 resource "aws_iam_instance_profile" "build" {
   name = "incredible-website-build-profile"
-  role = "aws_iam_role.build.name"
+  role = aws_iam_role.build.name
 }
 
 resource "aws_s3_bucket_policy" "artifacts" {
-  bucket = "aws_s3_bucket.artifacts.id"
+  bucket = aws_s3_bucket.artifacts.id
   policy =<<POLICY
 {
   "Version": "2012-10-17",

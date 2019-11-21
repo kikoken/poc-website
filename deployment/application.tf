@@ -5,7 +5,7 @@ resource "aws_elastic_beanstalk_application" "app" {
 
 resource "aws_elastic_beanstalk_environment" "production" {
   name                = "production"
-  application         = "aws_elastic_beanstalk_application.app.name"
+  application         = aws_elastic_beanstalk_application.app.name
   solution_stack_name = "64bit Amazon Linux 2018.03 v4.11.0 running Node.js"
 
   setting {
@@ -35,7 +35,7 @@ resource "aws_elastic_beanstalk_environment" "production" {
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
     name = "IamInstanceProfile"
-    value = "aws_iam_instance_profile.build.name"
+    value = aws_iam_instance_profile.build.name
   }
 
   setting {
@@ -52,5 +52,5 @@ resource "aws_elastic_beanstalk_environment" "production" {
 }
 
 output "url" {
-  value = "aws_elastic_beanstalk_environment.production.cname"
+  value = aws_elastic_beanstalk_environment.production.cname
 }
